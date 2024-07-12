@@ -6,12 +6,19 @@ public class Main {
     public static void toVerifyIsLeapYear(int year) {
         String isLeapYear = " год — високосный год.";
         String isNotLeapYear = " год — невисокосный год.";
-        if ((year % 4 == 0) || (year % 100 == 0 && year % 400 == 0)) {
-            System.out.println(year + isLeapYear);
+        if (year % 4 == 0) {
+            if (year % 100 == 0) {
+                if (year % 400 == 0) {
+                    System.out.println(year + isLeapYear);
+                }
+            } else {
+                System.out.println(year + isLeapYear);
+            }
         } else {
             System.out.println(year + isNotLeapYear);
         }
     }
+
 
     //Task 2
     public static void toDetermineVersion(int clientOS, int clientDeviceYear) {
@@ -33,24 +40,22 @@ public class Main {
     }
 
     //Task 3
-    public static void toDetermineDeliveryTime(int deliveryDistance) {
+    public static int toDetermineDeliveryTime(int deliveryDistance) {
         int deliveryTime = 0;
-
-        if (deliveryDistance < 20) {
-            deliveryTime = 1;
-        } else if (deliveryDistance >= 20 && deliveryDistance < 60) {
-            deliveryTime = 2;
-        } else if (deliveryDistance >= 60 && deliveryDistance < 100) {
-            deliveryTime = 3;
+        if (deliveryDistance < 0 || deliveryDistance > 100) {
+            deliveryTime--;
+        } else {
+            if (deliveryDistance > 0) {
+                deliveryTime++;
+            }
+            if (deliveryDistance > 20) {
+                deliveryTime++;
+            }
+            if (deliveryDistance < 60) {
+                deliveryTime++;
+            }
         }
-        System.out.printf("Потребуется %d дней для доставки.", deliveryTime);
-
-        if (deliveryDistance < 0) {
-            System.out.println("Неправильный ввод");
-        }
-        if (deliveryDistance >= 100) {
-            System.out.println("Доставка на расстояние выше 100 км не осуществляется");
-        }
+        return deliveryTime;
     }
 
 
